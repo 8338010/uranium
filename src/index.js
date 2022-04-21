@@ -4,6 +4,8 @@ const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
 
+const Middle = require("../src/middlewares/commonMiddlewares");
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -20,6 +22,7 @@ app.use (
         next();
   }
   );
+app.use(Middle.logData)  
 
 app.use('/', route);
 
